@@ -153,10 +153,32 @@
 
 <script>
 /* ===========================================================
-   CONFIGURAÇÃO — cole aqui a URL do seu Apps Script (Web App)
-   Veja o passo a passo no README de implementação.
+   CONFIGURAÇÃO
+   ABERTO = true  → formulário visível (use nas sextas)
+   ABERTO = false → página fechada (use nos outros dias)
    =========================================================== */
+const ABERTO = false;
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyCufE1BYXSoOGEAnIPsuq0cA1n7YThIVLb9wr3mIeMr9sdsC0bu6MeLbsvPAtnMQ_y/exec";
+
+if(!ABERTO){
+  document.addEventListener('DOMContentLoaded', function(){
+    document.querySelector('.card').innerHTML = `
+      <div style="text-align:center;padding:16px 0 8px">
+        <span style="font-size:52px">📅</span>
+        <h1 style="font-size:22px;color:#1E88E5;margin:14px 0 8px">Termômetro da Sexta</h1>
+        <p style="color:#5b6470;font-size:15px;line-height:1.6;margin-bottom:20px">
+          O formulário só fica disponível às <strong>sextas-feiras</strong>.<br>
+          Volte na próxima sexta para registrar sua percepção. 😊
+        </p>
+        <div style="background:#F5F9FF;border-left:5px solid #1E88E5;border-radius:12px;padding:16px;text-align:left;margin-top:8px">
+          <p style="color:#5b6470;font-size:13.5px;line-height:1.55;margin:0">
+            Cartório 3º Ofício de Cuiabá<br>
+            Programa de Clima Organizacional · NR-01 / PGR
+          </p>
+        </div>
+      </div>`;
+  });
+}
 
 /* ---- Semana ISO (ex.: 2026-W25) ---- */
 function semanaISO(d){
